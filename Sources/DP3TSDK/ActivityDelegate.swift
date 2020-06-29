@@ -9,9 +9,11 @@
 */
 
 import Foundation
+import ExposureNotification
 
 public protocol ActivityDelegate: AnyObject {
     func syncCompleted(totalRequest: Int, errors: [DP3TTracingError])
     func fakeRequestCompleted(result: Result<Int, DP3TNetworkingError>)
     func outstandingKeyUploadCompleted(result: Result<Int, DP3TNetworkingError>)
+    func exposureSummaryLoaded(summary: ENExposureDetectionSummary)
 }

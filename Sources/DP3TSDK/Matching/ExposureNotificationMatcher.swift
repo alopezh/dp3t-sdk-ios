@@ -77,6 +77,9 @@ class ExposureNotificationMatcher: Matcher {
             try? urls.forEach(deleteDiagnosisKeyFile(at:))
 
             if let summary = exposureSummary {
+                
+                DP3TTracing.activityDelegate?.exposureSummaryLoaded(summary: summary)
+                
                 let computedThreshold: Double = (Double(truncating: summary.attenuationDurations[0]) * defaults.parameters.contactMatching.factorLow + Double(truncating: summary.attenuationDurations[1]) * defaults.parameters.contactMatching.factorHigh) / TimeInterval.minute
 
                 logger.log("reiceived exposureSummary for day %{public}@ : %{public}@ computed threshold: %{public}.2f (low:%{public}.2f, high: %{public}.2f) required %{public}d",
